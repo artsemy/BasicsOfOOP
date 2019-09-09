@@ -5,6 +5,7 @@ public class Directory {
     private String directory;
 
     public Directory() {
+        directory = "null";
     }
 
     public Directory(String directory) {
@@ -17,5 +18,12 @@ public class Directory {
 
     public void setDirectory(String directory) {
         this.directory = directory;
+    }
+
+    @Override
+    public String toString() {
+        return "Directory{" +
+                "directory='" + directory + '\'' +
+                '}';
     }
 }
