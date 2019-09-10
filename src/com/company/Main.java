@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.calendar.Calendar;
 import com.company.files.Directory;
 import com.company.files.TextFile;
 import com.company.payment.Payment;
@@ -10,7 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
 //        func1();
-        func2();
+//        func2();
+        func3();
     }
 
     static void func1(){
@@ -47,6 +49,18 @@ public class Main {
         payment.deleteOrder(4);
         payment.print();
         System.out.println(payment.getFullPrice());
+    }
+
+    static void func3(){
+        Calendar calendar = new Calendar();
+        calendar.printAll();
+        Calendar.Data data = calendar.new Data(2020, 11, 7, false);
+        calendar.setData(data);
+        calendar.printData();
+        calendar.setTime(12, 12, 12);
+        calendar.printTime();
+        System.out.println("holiday " + calendar.getData().isHoliday());
+        System.out.println("weekend " + calendar.getData().isWeekend());
     }
 
 }
