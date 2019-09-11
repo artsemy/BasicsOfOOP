@@ -1,18 +1,21 @@
 package com.company;
 
 import com.company.calendar.Calendar;
+import com.company.dragon.Dragon;
 import com.company.files.Directory;
 import com.company.files.TextFile;
 import com.company.payment.Payment;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 //        func1();
 //        func2();
-        func3();
+//        func3();
+        func4();
     }
 
     static void func1(){
@@ -63,4 +66,37 @@ public class Main {
         System.out.println("weekend " + calendar.getData().isWeekend());
     }
 
+    static void func4(){
+        Dragon dragon = new Dragon();
+        dragon.loadTreasure();
+        dragon.sortByPrice();
+        boolean exit = false;
+        Scanner scanner = new Scanner(System.in);
+        while (!exit){
+            System.out.println("print '0' to exit");
+            System.out.println("print '1' to printAll");
+            System.out.println("print '2' to printMax");
+            System.out.println("print '3' to printBySum");
+            int k = scanner.nextInt();
+            switch (k){
+                case 0:
+                    exit = true;
+                    System.out.println("bye-bye");
+                    break;
+                case 1:
+                    dragon.printAll();
+                    break;
+                case 2:
+                    dragon.printExpensive();
+                    break;
+                case 3:
+                    System.out.println("print sum");
+                    k = scanner.nextInt();
+                    dragon.printBySum(k);
+                    break;
+                default:
+                    scanner.next();
+            }
+        }
+    }
 }

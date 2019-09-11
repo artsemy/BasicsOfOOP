@@ -14,10 +14,10 @@ public class Treasure {
 
     public Treasure(int i){
         Random r = new Random();
-        String[] mass = {"TV", "fridge", "electric kettle",
-                "microwave", "electric stove", "oven", "laptop",
-                "smartphone", "game console", "PC"};
-        name = mass[i%10];
+        String[] mass = {"PC", "TV", "electric kettle", "electric stove",
+                "fridge",  "game console", "laptop", "microwave", "oven",
+                "smartphone"};
+        name = mass[i%10] + " " + String.format ("%02d", i);
         price = r.nextInt(101) + 100;
     }
 
