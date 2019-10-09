@@ -6,38 +6,27 @@ public class Wrapper {
     private int size;
     private int price;
 
+    //constructor
     public Wrapper(String name, int size, int price) {
         this.name = name;
         this.size = size;
         this.price = price;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
+    //get method
     public int getPrice() {
         return price;
     }
 
+    //set method
     public void setPrice(int price) {
         this.price = price;
     }
 
+    //to string
     @Override
     public String toString() {
         return name + ", size=" + size + ", price=" + price;
     }
+
 }

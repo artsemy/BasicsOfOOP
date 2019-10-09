@@ -1,54 +1,37 @@
 package com.company.calendar;
 
+import java.util.Arrays;
+
 public class Calendar {
 
-    private Data data;
-    private Time time;
+    private Data[] holidays;
 
+    //constructor
     public Calendar() {
-        data = new Data();
-        time = new Time();
+        holidays = new Data[0];
     }
 
-    public Calendar(Data data, Time time) {
-        this.data = data;
-        this.time = time;
+    //add holiday
+    public void addHoliday(Data data){
+        holidays = Arrays.copyOf(holidays, holidays.length+1);
+        holidays[holidays.length-1] = data;
     }
 
-    public void setData(int year, int month, int day, boolean isHoliday){
-        data = new Data(year, month, day, isHoliday);
+    //print day info
+    public void printDay(int year, int month, int day){
+        Data data = new Data(year, month, day);
+        data.setHoliday(checkForHoliday(data));
+        System.out.println(data.toString());
     }
 
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    public Data getData() {
-        return data;
-    }
-
-    public void setTime(int hour, int minute, int second){
-        time = new Time(hour, minute, second);
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void printData(){
-        System.out.println(data);
-    }
-
-    public void printTime(){
-        System.out.println(time);
-    }
-
-    public void printAll(){
-        System.out.println(data + " " + time);
+    //check for holiday
+    public boolean checkForHoliday(Data data){
+        for (Data d: holidays) {
+            if (data.year == d.year && data.month == d.month && data.day == d.day){
+                return true;
+            }
+        }
+        return false;
     }
 
     public class Data{
@@ -59,6 +42,7 @@ public class Calendar {
         private boolean isHoliday;
         private boolean isWeekend;
 
+        //constructor
         public Data() {
             year = 2019;
             month = 1;
@@ -67,14 +51,16 @@ public class Calendar {
             isWeekend = true;
         }
 
-        public Data(int year, int month, int day, boolean isHoliday) {
+        //constructor
+        public Data(int year, int month, int day) {
             this.year = year;
             this.month = month;
             this.day = day;
-            this.isHoliday = isHoliday;
             isWeekend = isWeekend(day);
+            isHoliday = false;
         }
 
+        //set weekend
         public boolean isWeekend(int day){
             if (day%7 == 6 || day%7 == 0) {
                 return true;
@@ -83,46 +69,27 @@ public class Calendar {
             }
         }
 
-        public int getYear() {
-            return year;
-        }
-
-        public void setYear(int year) {
-            this.year = year;
-        }
-
-        public int getMonth() {
-            return month;
-        }
-
-        public void setMonth(int month) {
-            this.month = month;
-        }
-
-        public int getDay() {
-            return day;
-        }
-
-        public void setDay(int day) {
-            this.day = day;
-        }
-
+        //get method
         public boolean isHoliday() {
             return isHoliday;
         }
 
+        //set method
         public void setHoliday(boolean holiday) {
             isHoliday = holiday;
         }
 
+        //get method
         public boolean isWeekend() {
             return isWeekend;
         }
 
+        //set method
         public void setWeekend(boolean weekend) {
             isWeekend = weekend;
         }
 
+        //to string
         @Override
         public String toString() {
             return year + "." + month +"." + day +
@@ -131,51 +98,4 @@ public class Calendar {
         }
     }
 
-    public class Time{
-
-        private int hour;
-        private int minute;
-        private int second;
-
-        public Time() {
-            hour = 0;
-            minute = 0;
-            second = 0;
-        }
-
-        public Time(int hour, int minute, int second) {
-            this.hour = hour;
-            this.minute = minute;
-            this.second = second;
-        }
-
-        public int getHour() {
-            return hour;
-        }
-
-        public void setHour(int hour) {
-            this.hour = hour;
-        }
-
-        public int getMinute() {
-            return minute;
-        }
-
-        public void setMinute(int minute) {
-            this.minute = minute;
-        }
-
-        public int getSecond() {
-            return second;
-        }
-
-        public void setSecond(int second) {
-            this.second = second;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%02d:%02d:%02d", hour, minute, second);
-        }
-    }
 }

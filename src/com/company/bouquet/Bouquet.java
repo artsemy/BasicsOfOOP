@@ -11,6 +11,7 @@ public class Bouquet {
     private Wrapper wrapper;
     private int price;
 
+    //constructor
     public Bouquet() {
         name = "bouquet";
         flowers = new Flower[0];
@@ -18,26 +19,12 @@ public class Bouquet {
         price = 0;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Flower[] getFlowers() {
-        return flowers;
-    }
-
-    public void setFlowers(Flower[] flowers) {
-        this.flowers = flowers;
-    }
-
+    //get method
     public Wrapper getWrapper() {
         return wrapper;
     }
 
+    //set wrapper
     public void setWrapper(String name, boolean premium) {
         int count = flowers.length;
         int k = premium ? 10 : 5;
@@ -45,6 +32,7 @@ public class Bouquet {
         this.wrapper = wrapper;
     }
 
+    //get full price
     public int getPrice() {
         price += wrapper.getPrice();
         for (int i = 0; i < flowers.length; i++) {
@@ -53,15 +41,18 @@ public class Bouquet {
         return price;
     }
 
+    //set full price
     public void setPrice(int price) {
         this.price = price;
     }
 
+    //add flower
     public void addFlower(Flower flower){
         flowers = Arrays.copyOf(flowers, flowers.length+1);
         flowers[flowers.length-1] = flower;
     }
 
+    //print
     public void printInfo(){
         System.out.println("flowers:");
         for (Flower flower : flowers) {
